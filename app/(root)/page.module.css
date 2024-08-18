@@ -1,0 +1,19 @@
+.wrapper {
+	display: grid;
+	grid-template-rows: 60px 1fr 60px;
+	grid-template-areas: 'header' 'body' 'footer';
+
+	min-height: inherit;
+}
+
+.body {
+	grid-area: body;
+}
+
+.header {
+	grid-area: header;
+}
+
+.footer {
+	grid-area: footer;
+}
