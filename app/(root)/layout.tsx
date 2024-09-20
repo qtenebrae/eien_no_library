@@ -1,3 +1,5 @@
+import { Header } from '@/components/shared/header';
+import { Footer } from '@/components/shared/footer';
 import styles from './page.module.css';
 
 export default function HomeLayout({
@@ -7,9 +9,9 @@ export default function HomeLayout({
 }>) {
 	return (
 		<div className={styles.wrapper}>
-			<header className={styles.header}>Header</header>
+			<Header className={styles.header} />
 			<div className={styles.body}>{children}</div>
-			<footer className={styles.footer}>Footer</footer>
+			<Footer className={styles.footer} />
 		</div>
 	);
 }
