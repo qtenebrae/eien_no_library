@@ -1,6 +1,6 @@
 .wrapper {
 	display: grid;
-	grid-template-rows: 60px 1fr 60px;
+	grid-template-rows: auto 1fr auto;
 	grid-template-areas: 'header' 'body' 'footer';
 
 	min-height: inherit;

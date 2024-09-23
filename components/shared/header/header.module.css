@@ -1,0 +1,9 @@
+.wrapper {
+	display: grid;
+	align-items: center;
+	justify-items: center;
+	grid-template-columns: auto 1fr auto auto auto auto;
+	gap: 30px;
+
+	padding: 10px 30px;
+}
