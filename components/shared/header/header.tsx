@@ -23,6 +23,8 @@ import style from './header.module.css';
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export function Header({ className }: HeaderProps) {
+	const isAuth = false;
+
 	return (
 		<header className={cn(className, style.wrapper, 'border-b')}>
 			<Link href="/">
@@ -74,70 +76,74 @@ export function Header({ className }: HeaderProps) {
 
 			<ModeToggle />
 
-			<Button variant="ghost" asChild>
-				<Link href="/sign">
-					Вход | Регистрация
-					<Icons.enter className="ml-[5px] w-[16px] h-[16px]" />
-				</Link>
-			</Button>
+			{!isAuth && (
+				<Button variant="ghost" asChild>
+					<Link href="/sign">
+						Вход | Регистрация
+						<Icons.enter className="ml-[5px] w-[16px] h-[16px]" />
+					</Link>
+				</Button>
+			)}
 
-			<Sheet>
-				<SheetTrigger>
-					<Avatar className="border rounded-full">
-						<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-						<AvatarFallback>IS</AvatarFallback>
-					</Avatar>
-				</SheetTrigger>
-				<SheetContent className="w-[320px] text-sm">
-					<SheetHeader className={style.sheetheader}>
+			{isAuth && (
+				<Sheet>
+					<SheetTrigger>
 						<Avatar className="border rounded-full">
 							<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
 							<AvatarFallback>IS</AvatarFallback>
 						</Avatar>
+					</SheetTrigger>
+					<SheetContent className="w-[320px] text-sm">
+						<SheetHeader className={style.sheetheader}>
+							<Avatar className="border rounded-full">
+								<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+								<AvatarFallback>IS</AvatarFallback>
+							</Avatar>
 
-						<div className="justify-self-start ml-[20px]">
-							<Link href="/" className="font-bold">
-								qtenebrae
-							</Link>
-							<div className="text-muted-foregroun">Ivanov Sergey</div>
+							<div className="justify-self-start ml-[20px]">
+								<Link href="/" className="font-bold">
+									qtenebrae
+								</Link>
+								<div className="text-muted-foregroun">Ivanov Sergey</div>
+							</div>
+						</SheetHeader>
+
+						<Separator className="my-[10px]" />
+
+						<div className="flex flex-col">
+							<Button className="justify-start" size="sm" variant="ghost" asChild>
+								<Link href="/">
+									<Icons.dashboard className="mr-[5px] w-[16px] h-[16px]" />
+									Список книг
+								</Link>
+							</Button>
+							<Button className="justify-start" size="sm" variant="ghost" asChild>
+								<Link href="/">
+									<Icons.settings className="mr-[5px] w-[16px] h-[16px]" />
+									Настройки
+								</Link>
+							</Button>
 						</div>
-					</SheetHeader>
 
-					<Separator className="my-[10px]" />
+						<Separator className="my-[10px]" />
 
-					<div className="flex flex-col">
-						<Button className="justify-start" size="sm" variant="ghost" asChild>
-							<Link href="/">
-								<Icons.dashboard className="mr-[5px] w-[16px] h-[16px]" />
-								Список книг
-							</Link>
-						</Button>
-						<Button className="justify-start" size="sm" variant="ghost" asChild>
-							<Link href="/">
-								<Icons.settings className="mr-[5px] w-[16px] h-[16px]" />
-								Настройки
-							</Link>
-						</Button>
-					</div>
-
-					<Separator className="my-[10px]" />
-
-					<div className="flex flex-col">
-						<Button className="justify-start" size="sm" variant="ghost" asChild>
-							<Link href="/">
-								<Icons.question className="mr-[5px] w-[16px] h-[16px]" />
-								FAQ
-							</Link>
-						</Button>
-						<Button className="justify-start" size="sm" variant="ghost" asChild>
-							<Link href="/">
-								<Icons.exit className="mr-[5px] w-[16px] h-[16px]" />
-								Выход
-							</Link>
-						</Button>
-					</div>
-				</SheetContent>
-			</Sheet>
+						<div className="flex flex-col">
+							<Button className="justify-start" size="sm" variant="ghost" asChild>
+								<Link href="/">
+									<Icons.question className="mr-[5px] w-[16px] h-[16px]" />
+									FAQ
+								</Link>
+							</Button>
+							<Button className="justify-start" size="sm" variant="ghost" asChild>
+								<Link href="/">
+									<Icons.exit className="mr-[5px] w-[16px] h-[16px]" />
+									Выход
+								</Link>
+							</Button>
+						</div>
+					</SheetContent>
+				</Sheet>
+			)}
 		</header>
 	);
 }
