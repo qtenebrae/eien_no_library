@@ -15,6 +15,9 @@ import {
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Icons } from '@/components/icons';
 import { Input } from '@/components/ui/input';
+import { Sheet, SheetTrigger, SheetContent, SheetHeader } from '@/components/ui/sheet';
+import { Separator } from '@/components/ui/separator';
+import { Button } from '@/components/ui/button';
 import style from './header.module.css';
 
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
@@ -69,33 +72,72 @@ export function Header({ className }: HeaderProps) {
 				</NavigationMenuList>
 			</NavigationMenu>
 
-			<NavigationMenu>
-				<NavigationMenuList>
-					<NavigationMenuItem>
-						<Link href="/" legacyBehavior passHref>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-								Вход | Регистрация
-								<Icons.enter className="ml-[5px] w-[16px] h-[16px]" />
-							</NavigationMenuLink>
-						</Link>
-					</NavigationMenuItem>
-					<NavigationMenuItem>
-						<Link href="/" legacyBehavior passHref>
-							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
-								Личный кабинет
-								<Icons.person className="ml-[5px] w-[16px] h-[16px]" />
-							</NavigationMenuLink>
-						</Link>
-					</NavigationMenuItem>
-				</NavigationMenuList>
-			</NavigationMenu>
-
 			<ModeToggle />
 
-			<Avatar>
-				<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
-				<AvatarFallback>CN</AvatarFallback>
-			</Avatar>
+			<Button variant="ghost" asChild>
+				<Link href="/sign">
+					Вход | Регистрация
+					<Icons.enter className="ml-[5px] w-[16px] h-[16px]" />
+				</Link>
+			</Button>
+
+			<Sheet>
+				<SheetTrigger>
+					<Avatar className="border rounded-full">
+						<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+						<AvatarFallback>IS</AvatarFallback>
+					</Avatar>
+				</SheetTrigger>
+				<SheetContent className="w-[320px] text-sm">
+					<SheetHeader className={style.sheetheader}>
+						<Avatar className="border rounded-full">
+							<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
+							<AvatarFallback>IS</AvatarFallback>
+						</Avatar>
+
+						<div className="justify-self-start ml-[20px]">
+							<Link href="/" className="font-bold">
+								qtenebrae
+							</Link>
+							<div className="text-muted-foregroun">Ivanov Sergey</div>
+						</div>
+					</SheetHeader>
+
+					<Separator className="my-[10px]" />
+
+					<div className="flex flex-col">
+						<Button className="justify-start" size="sm" variant="ghost" asChild>
+							<Link href="/">
+								<Icons.dashboard className="mr-[5px] w-[16px] h-[16px]" />
+								Список книг
+							</Link>
+						</Button>
+						<Button className="justify-start" size="sm" variant="ghost" asChild>
+							<Link href="/">
+								<Icons.settings className="mr-[5px] w-[16px] h-[16px]" />
+								Настройки
+							</Link>
+						</Button>
+					</div>
+
+					<Separator className="my-[10px]" />
+
+					<div className="flex flex-col">
+						<Button className="justify-start" size="sm" variant="ghost" asChild>
+							<Link href="/">
+								<Icons.question className="mr-[5px] w-[16px] h-[16px]" />
+								FAQ
+							</Link>
+						</Button>
+						<Button className="justify-start" size="sm" variant="ghost" asChild>
+							<Link href="/">
+								<Icons.exit className="mr-[5px] w-[16px] h-[16px]" />
+								Выход
+							</Link>
+						</Button>
+					</div>
+				</SheetContent>
+			</Sheet>
 		</header>
 	);
 }
