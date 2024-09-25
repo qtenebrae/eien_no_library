@@ -19,11 +19,11 @@ import Link from 'next/link';
 export default function Sign() {
 	return (
 		<div className="relative flex flex-col justify-start items-center p-4 w-[100vw] min-h-[100vh] md:justify-center">
-			<Card className="static flex justify-center items-center top-10 left-10 p-4 mb-4 h-[60px] w-full sm:w-fit min-[1780px]:absolute">
+			<Card className="static top-10 left-10 flex justify-center items-center p-4 mb-4 w-full h-14 sm:w-fit min-[1780px]:absolute">
 				<Button variant="ghost" className="mr-4" asChild>
 					<Link href="/">
 						Вернуться на главную
-						<Icons.logotype className="ml-[5px] w-[24px] h-[24px]" />
+						<Icons.logotype className="ml-1.5 w-6 h-6" />
 					</Link>
 				</Button>
 
@@ -31,13 +31,13 @@ export default function Sign() {
 			</Card>
 
 			<Card className="relative flex p-4 w-full lg:w-fit">
-				<Tabs defaultValue="signin" className="w-full md:max-w-[400px]">
+				<Tabs defaultValue="signin" className="w-full md:max-w-[25rem]">
 					<TabsList className="grid grid-cols-2">
 						<TabsTrigger value="signin">Вход</TabsTrigger>
 						<TabsTrigger value="signup">Регистрация</TabsTrigger>
 					</TabsList>
 					<TabsContent value="signin">
-						<Card className="h-[592px]">
+						<Card className="h-[37rem]">
 							<CardHeader>
 								<CardTitle className="text-3xl font-bold">Вход в Eien</CardTitle>
 								<CardDescription>
@@ -55,7 +55,7 @@ export default function Sign() {
 								</div>
 
 								<div className="flex space-x-2 space-y-2">
-									<Checkbox id="saveme" className="mt-[7px]" />
+									<Checkbox id="saveme" className="mt-2" />
 									<div className="grid gap-1.5 leading-none">
 										<label
 											htmlFor="saveme"
@@ -71,7 +71,7 @@ export default function Sign() {
 							</CardFooter>
 						</Card>
 
-						<Icons.logotype className="absolute bottom-10 left-10 w-[100px] h-[100px]" />
+						<Icons.logotype className="absolute bottom-10 left-10 w-28 h-28" />
 					</TabsContent>
 					<TabsContent value="signup">
 						<Card>
@@ -98,7 +98,7 @@ export default function Sign() {
 								</div>
 
 								<div className="flex space-x-2 space-y-2">
-									<Checkbox id="terms1" className="mt-[7px]" />
+									<Checkbox id="terms1" className="mt-2" />
 									<div className="grid gap-1.5 leading-none">
 										<label
 											htmlFor="terms1"
@@ -120,12 +120,12 @@ export default function Sign() {
 					</TabsContent>
 				</Tabs>
 
-				<Card className="hidden w-[640px] ml-[20px] md:block">
+				<Card className="hidden w-[40rem] ml-5 md:block">
 					<Shapes.coil />
 				</Card>
 			</Card>
 
-			<Shapes.wave className="absolute top-0 left-0 w-full h-full object-cover scale-125 z-[-1]" />
+			<Shapes.wave className="absolute object-cover top-0 left-0 z-[-1] w-full h-full scale-125" />
 		</div>
 	);
 }

@@ -1,4 +1,4 @@
-import { Header } from '@/components/shared/header/header';
+import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
 import styles from './layout.module.css';
 
