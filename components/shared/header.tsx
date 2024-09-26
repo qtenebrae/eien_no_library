@@ -22,13 +22,13 @@ import { Button } from '@/components/ui/button';
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export function Header({ className }: HeaderProps) {
-	const isAuth = true;
+	const isAuth = false;
 
 	return (
 		<header
 			className={cn(
 				className,
-				'grid grid-cols-[3.75rem_1fr_auto_auto_auto] gap-8 items-center justify-items-center py-2.5 px-8 border-b'
+				'grid grid-cols-[3.75rem_1fr_auto_auto] gap-2 items-center justify-items-center py-2.5 px-2 border-b lg:grid-cols-[3.75rem_1fr_auto_auto_auto] lg:gap-8 lg:px-8'
 			)}
 		>
 			<Link href="/">
@@ -40,7 +40,7 @@ export function Header({ className }: HeaderProps) {
 				<Input type="search" placeholder="Поиск..." className="rounded-lg bg-background pl-10" />
 			</div>
 
-			<NavigationMenu>
+			<NavigationMenu className="hidden lg:flex">
 				<NavigationMenuList>
 					<NavigationMenuItem>
 						<Link href="/catalog" legacyBehavior passHref>
@@ -50,7 +50,6 @@ export function Header({ className }: HeaderProps) {
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
-
 					<NavigationMenuItem>
 						<Link href="/challenges" legacyBehavior passHref>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
@@ -78,13 +77,22 @@ export function Header({ className }: HeaderProps) {
 				</NavigationMenuList>
 			</NavigationMenu>
 
-			<ModeToggle />
-
+			<div className="hidden lg:flex">
+				<ModeToggle />
+			</div>
 			{!isAuth && (
-				<Button variant="ghost" asChild>
+				<Button className="hidden xl:flex" variant="ghost" asChild>
 					<Link href="/sign">
 						Вход | Регистрация
 						<Icons.enter className="ml-1.5 w-4 h-4" />
+					</Link>
+				</Button>
+			)}
+
+			{!isAuth && (
+				<Button className="xl:hidden" variant="outline" size="icon" asChild>
+					<Link href="/sign">
+						<Icons.enter className="w-4 h-4" />
 					</Link>
 				</Button>
 			)}
@@ -97,14 +105,14 @@ export function Header({ className }: HeaderProps) {
 							<AvatarFallback>IS</AvatarFallback>
 						</Avatar>
 					</SheetTrigger>
-					<SheetContent className="w-80 text-sm">
+					<SheetContent className="w-60 text-sm lg:w-80">
 						<SheetHeader className="grid grid-cols-[auto_1fr] items-center">
 							<Avatar className="border rounded-full">
 								<AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" />
 								<AvatarFallback>IS</AvatarFallback>
 							</Avatar>
 
-							<div className="justify-self-start ml-5">
+							<div className="text-start justify-self-start ml-5">
 								<Link href="/" className="font-bold">
 									qtenebrae
 								</Link>

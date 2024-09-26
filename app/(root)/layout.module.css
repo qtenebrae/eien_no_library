@@ -3,7 +3,7 @@
 	grid-template-rows: auto 1fr auto;
 	grid-template-areas: 'header' 'body' 'footer';
 
-	min-height: inherit;
+	min-height: 100svh;
 }
 
 .body {
