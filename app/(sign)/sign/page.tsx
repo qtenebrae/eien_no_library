@@ -14,6 +14,7 @@ import { Shapes } from '@/components/shapes';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { Icons } from '@/components/icons';
+import { SignUpForm } from '@/components/ui/sign-up-form';
 import Link from 'next/link';
 
 export default function Sign() {
@@ -79,43 +80,9 @@ export default function Sign() {
 								<CardTitle className="text-3xl font-bold">Регистрация</CardTitle>
 								<CardDescription>Создай аккаунт и получай награды за чтение!</CardDescription>
 							</CardHeader>
-							<CardContent className="space-y-2 z-2">
-								<div className="space-y-1">
-									<Label htmlFor="email">Электронная почта</Label>
-									<Input id="email" type="email" />
-								</div>
-								<div className="space-y-1">
-									<Label htmlFor="username">Логин</Label>
-									<Input id="username" />
-								</div>
-								<div className="space-y-1">
-									<Label htmlFor="password">Пароль</Label>
-									<Input id="password" type="password" />
-								</div>
-								<div className="space-y-1">
-									<Label htmlFor="confirm-password">Подтверждение пароля</Label>
-									<Input id="confirm-password" type="password" />
-								</div>
-
-								<div className="flex space-x-2 space-y-2">
-									<Checkbox id="terms1" className="mt-2" />
-									<div className="grid gap-1.5 leading-none">
-										<label
-											htmlFor="terms1"
-											className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-										>
-											Принять правила и условия
-										</label>
-										<p className="text-sm text-muted-foreground">
-											Вы соглашаетесь с нашими Условиями предоставления услуг и Политикой
-											конфиденциальности.
-										</p>
-									</div>
-								</div>
+							<CardContent>
+								<SignUpForm />
 							</CardContent>
-							<CardFooter>
-								<Button className="w-full">Регистрация</Button>
-							</CardFooter>
 						</Card>
 					</TabsContent>
 				</Tabs>
@@ -124,8 +91,6 @@ export default function Sign() {
 					<Shapes.coil />
 				</Card>
 			</Card>
-
-			<Shapes.wave className="absolute object-cover top-0 left-0 z-[-1] w-full h-full scale-125" />
 		</div>
 	);
 }
