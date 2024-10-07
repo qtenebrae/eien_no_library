@@ -12,6 +12,8 @@ export { QuestionIcon } from './QuestionIcon';
 export { SettingsIcon } from './SettingsIcon';
 export { HamburgerIcon } from './HamburgerIcon';
 export { CrossIcon } from './CrossIcon';
+export { EyeNoneIcon } from './EyeNoneIcon';
+export { EyeOpenIcon } from './EyeOpenIcon';
 // shapes
 export { WaveShape } from './WaveShape';
 export { CoilShape } from './CoilShape';

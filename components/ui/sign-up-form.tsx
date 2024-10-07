@@ -1,12 +1,14 @@
 'use client';
 
 import { useForm } from 'react-hook-form';
+import { useState } from 'react';
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from './form';
 import { Input } from './input';
 import { Button } from './button';
 import { Checkbox } from './checkbox';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
+import { EyeNoneIcon, EyeOpenIcon } from '../icons';
 
 const formSchema = z
 	.object({
@@ -43,6 +45,12 @@ const SignUpForm = () => {
 		}
 	});
 
+	const [showPassword, setShowPassword] = useState(false);
+
+	const togglePasswordVisibility = () => {
+		setShowPassword((prevShowPassword) => !prevShowPassword);
+	};
+
 	function onSubmit(values: z.infer<typeof formSchema>) {
 		console.log(values);
 		// implementation to do
@@ -58,7 +66,7 @@ const SignUpForm = () => {
 						<FormItem className="space-y-1">
 							<FormLabel>Электронная почта</FormLabel>
 							<FormControl>
-								<Input {...field} />
+								<Input {...field} autoComplete="email" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -71,7 +79,7 @@ const SignUpForm = () => {
 						<FormItem className="space-y-1">
 							<FormLabel>Логин</FormLabel>
 							<FormControl>
-								<Input {...field} />
+								<Input {...field} autoComplete="username" />
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -81,10 +89,26 @@ const SignUpForm = () => {
 					control={form.control}
 					name="password"
 					render={({ field }) => (
-						<FormItem className="space-y-1">
+						<FormItem className="relative space-y-1">
 							<FormLabel>Пароль</FormLabel>
 							<FormControl>
-								<Input {...field} type="password" />
+								<div className="relative">
+									<Input
+										{...field}
+										type={showPassword ? 'text' : 'password'}
+										autoComplete="new-password"
+									/>
+									<Button
+										className="absolute bottom-0 right-0"
+										onClick={togglePasswordVisibility}
+										size="icon"
+										variant="default"
+										type="button"
+									>
+										{showPassword && <EyeNoneIcon />}
+										{!showPassword && <EyeOpenIcon />}
+									</Button>
+								</div>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
@@ -97,7 +121,23 @@ const SignUpForm = () => {
 						<FormItem className="space-y-1">
 							<FormLabel>Подтверждение пароля</FormLabel>
 							<FormControl>
-								<Input {...field} type="password" />
+								<div className="relative">
+									<Input
+										{...field}
+										type={showPassword ? 'text' : 'password'}
+										autoComplete="new-password"
+									/>
+									<Button
+										className="absolute bottom-0 right-0"
+										onClick={togglePasswordVisibility}
+										size="icon"
+										variant="default"
+										type="button"
+									>
+										{showPassword && <EyeNoneIcon />}
+										{!showPassword && <EyeOpenIcon />}
+									</Button>
+								</div>
 							</FormControl>
 							<FormMessage />
 						</FormItem>
