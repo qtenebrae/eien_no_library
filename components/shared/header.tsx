@@ -13,16 +13,27 @@ import {
 	navigationMenuTriggerStyle
 } from '@/components/ui/navigation-menu';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Icons } from '@/components/icons';
 import { Input } from '@/components/ui/input';
 import { Sheet, SheetTrigger, SheetContent, SheetHeader } from '@/components/ui/sheet';
 import { Separator } from '@/components/ui/separator';
 import { Button } from '@/components/ui/button';
+import {
+	DashboardIcon,
+	EnterIcon,
+	ExitIcon,
+	LogoIcon,
+	LoupeIcon,
+	MixIcon,
+	QuestionIcon,
+	ReaderIcon,
+	RocketIcon,
+	SettingsIcon
+} from '@/components/icons';
 
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export function Header({ className }: HeaderProps) {
-	const isAuth = false;
+	const isAuth = true;
 
 	return (
 		<header
@@ -32,11 +43,11 @@ export function Header({ className }: HeaderProps) {
 			)}
 		>
 			<Link href="/">
-				<Icons.logotype className="w-10 h-10" />
+				<LogoIcon className="w-10 h-10" />
 			</Link>
 
 			<div className="relative justify-self-start min-w-48 w-full">
-				<Icons.loupe className="absolute left-2.5 top-2.5 h-5 w-5 text-muted-foreground" />
+				<LoupeIcon className="absolute left-2.5 top-2.5 h-5 w-5 text-muted-foreground" />
 				<Input type="search" placeholder="Поиск..." className="rounded-lg bg-background pl-10" />
 			</div>
 
@@ -46,7 +57,7 @@ export function Header({ className }: HeaderProps) {
 						<Link href="/catalog" legacyBehavior passHref>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 								Каталог
-								<Icons.dashboard className="ml-1.5 w-4 h-4" />
+								<DashboardIcon className="ml-1.5 w-4 h-4" />
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -54,7 +65,7 @@ export function Header({ className }: HeaderProps) {
 						<Link href="/challenges" legacyBehavior passHref>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 								Челленджи
-								<Icons.mix className="ml-1.5 w-4 h-4" />
+								<MixIcon className="ml-1.5 w-4 h-4" />
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -62,7 +73,7 @@ export function Header({ className }: HeaderProps) {
 						<Link href="/leaderboard" legacyBehavior passHref>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 								Лидеры
-								<Icons.rocket className="ml-1.5 w-4 h-4" />
+								<RocketIcon className="ml-1.5 w-4 h-4" />
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -70,7 +81,7 @@ export function Header({ className }: HeaderProps) {
 						<Link href="/contacts" legacyBehavior passHref>
 							<NavigationMenuLink className={navigationMenuTriggerStyle()}>
 								Контакты
-								<Icons.reader className="ml-1.5 w-4 h-4" />
+								<ReaderIcon className="ml-1.5 w-4 h-4" />
 							</NavigationMenuLink>
 						</Link>
 					</NavigationMenuItem>
@@ -84,7 +95,7 @@ export function Header({ className }: HeaderProps) {
 				<Button className="hidden xl:flex" variant="ghost" asChild>
 					<Link href="/sign">
 						Вход | Регистрация
-						<Icons.enter className="ml-1.5 w-4 h-4" />
+						<EnterIcon className="ml-1.5 w-4 h-4" />
 					</Link>
 				</Button>
 			)}
@@ -92,7 +103,7 @@ export function Header({ className }: HeaderProps) {
 			{!isAuth && (
 				<Button className="xl:hidden" variant="outline" size="icon" asChild>
 					<Link href="/sign">
-						<Icons.enter className="w-4 h-4" />
+						<EnterIcon className="w-4 h-4" />
 					</Link>
 				</Button>
 			)}
@@ -125,13 +136,13 @@ export function Header({ className }: HeaderProps) {
 						<div className="flex flex-col">
 							<Button className="justify-start" size="sm" variant="ghost" asChild>
 								<Link href="/">
-									<Icons.dashboard className="mr-1.5 w-4 h-4" />
+									<DashboardIcon className="mr-1.5 w-4 h-4" />
 									Список книг
 								</Link>
 							</Button>
 							<Button className="justify-start" size="sm" variant="ghost" asChild>
 								<Link href="/">
-									<Icons.settings className="mr-1.5 w-4 h-4" />
+									<SettingsIcon className="mr-1.5 w-4 h-4" />
 									Настройки
 								</Link>
 							</Button>
@@ -142,13 +153,13 @@ export function Header({ className }: HeaderProps) {
 						<div className="flex flex-col">
 							<Button className="justify-start" size="sm" variant="ghost" asChild>
 								<Link href="/">
-									<Icons.question className="mr-1.5 w-4 h-4" />
+									<QuestionIcon className="mr-1.5 w-4 h-4" />
 									FAQ
 								</Link>
 							</Button>
 							<Button className="justify-start" size="sm" variant="ghost" asChild>
 								<Link href="/">
-									<Icons.exit className="mr-1.5 w-4 h-4" />
+									<ExitIcon className="mr-1.5 w-4 h-4" />
 									Выход
 								</Link>
 							</Button>

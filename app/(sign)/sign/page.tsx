@@ -10,11 +10,10 @@ import {
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { Label } from '@/components/ui/label';
 import { Input } from '@/components/ui/input';
-import { Shapes } from '@/components/shapes';
 import { Checkbox } from '@/components/ui/checkbox';
 import { ModeToggle } from '@/components/ui/mode-toggle';
-import { Icons } from '@/components/icons';
 import { SignUpForm } from '@/components/ui/sign-up-form';
+import { CoilShape, LogoIcon } from '@/components/icons';
 import Link from 'next/link';
 
 export default function Sign() {
@@ -24,7 +23,7 @@ export default function Sign() {
 				<Button variant="ghost" className="mr-4" asChild>
 					<Link href="/">
 						Вернуться на главную
-						<Icons.logotype className="ml-1.5 w-6 h-6" />
+						<LogoIcon className="ml-1.5 w-6 h-6" />
 					</Link>
 				</Button>
 
@@ -72,7 +71,7 @@ export default function Sign() {
 							</CardFooter>
 						</Card>
 
-						<Icons.logotype className="absolute bottom-10 left-10 w-28 h-28" />
+						<LogoIcon className="absolute bottom-10 left-10 w-28 h-28" />
 					</TabsContent>
 					<TabsContent value="signup">
 						<Card>
@@ -88,7 +87,7 @@ export default function Sign() {
 				</Tabs>
 
 				<Card className="hidden w-[40rem] ml-5 md:block">
-					<Shapes.coil />
+					<CoilShape />
 				</Card>
 			</Card>
 		</div>
