@@ -1,20 +1,11 @@
 import { Button } from '@/components/ui/button';
-import {
-	Card,
-	CardHeader,
-	CardTitle,
-	CardDescription,
-	CardContent,
-	CardFooter
-} from '@/components/ui/card';
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
-import { Label } from '@/components/ui/label';
-import { Input } from '@/components/ui/input';
-import { Checkbox } from '@/components/ui/checkbox';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { SignUpForm } from '@/components/ui/sign-up-form';
 import { CoilShape, LogoIcon } from '@/components/icons';
 import Link from 'next/link';
+import { SignInForm } from '@/components/ui/sign-in-form';
 
 export default function Sign() {
 	return (
@@ -44,31 +35,9 @@ export default function Sign() {
 									Добро пожаловать обратно! Готов продолжить свой книжный путь?
 								</CardDescription>
 							</CardHeader>
-							<CardContent className="space-y-2">
-								<div className="space-y-1">
-									<Label htmlFor="username">Логин</Label>
-									<Input id="username" />
-								</div>
-								<div className="space-y-1">
-									<Label htmlFor="password">Пароль</Label>
-									<Input id="password" type="password" />
-								</div>
-
-								<div className="flex space-x-2 space-y-2">
-									<Checkbox id="saveme" className="mt-2" />
-									<div className="grid gap-1.5 leading-none">
-										<label
-											htmlFor="saveme"
-											className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
-										>
-											Запомнить меня на этом устройстве
-										</label>
-									</div>
-								</div>
+							<CardContent>
+								<SignInForm />
 							</CardContent>
-							<CardFooter>
-								<Button className="w-full">Вход</Button>
-							</CardFooter>
 						</Card>
 
 						<LogoIcon className="absolute bottom-10 left-10 w-28 h-28" />
