@@ -87,7 +87,7 @@ export default function Sign() {
 				</Tabs>
 
 				<Card className="hidden w-[40rem] ml-5 md:block">
-					<CoilShape />
+					<CoilShape className="animate-pulse" />
 				</Card>
 			</Card>
 		</div>

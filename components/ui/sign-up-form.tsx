@@ -9,6 +9,8 @@ import { Checkbox } from './checkbox';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { EyeNoneIcon, EyeOpenIcon } from '../icons';
+import { useSignUpMutation } from '@/lib/api/api';
+import { useToast } from '@/hooks/use-toast';
 
 const formSchema = z
 	.object({
@@ -51,9 +53,23 @@ const SignUpForm = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);
 	};
 
-	function onSubmit(values: z.infer<typeof formSchema>) {
-		console.log(values);
-		// implementation to do
+	const [signUp] = useSignUpMutation();
+
+	const { toast } = useToast();
+
+	async function onSubmit(values: z.infer<typeof formSchema>) {
+		try {
+			await signUp(values).unwrap();
+			toast({
+				title: 'Аккаунт успешно создан!'
+			});
+		} catch (error) {
+			toast({
+				title: 'Ой! Что-то пошло не так..',
+				// @ts-ignore
+				description: `${error.data.message}`
+			});
+		}
 	}
 
 	return (

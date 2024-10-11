@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Nunito_Sans } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import { Toaster } from '@/components/ui/toaster';
+import StoreProvider from '@/components/store-provider';
 import './globals.css';
 
 const nunito = Nunito_Sans({ subsets: ['cyrillic', 'latin'] });
@@ -25,8 +26,10 @@ export default function RootLayout({
 					enableSystem
 					disableTransitionOnChange
 				>
-					{children}
-					<Toaster />
+					<StoreProvider>
+						{children}
+						<Toaster />
+					</StoreProvider>
 				</ThemeProvider>
 			</body>
 		</html>
