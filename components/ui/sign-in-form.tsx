@@ -11,6 +11,9 @@ import { z } from 'zod';
 import { EyeNoneIcon, EyeOpenIcon } from '../icons';
 import { useSignInMutation } from '@/lib/api/api';
 import { useToast } from '@/hooks/use-toast';
+import { useAppDispatch } from '@/hooks/hooks';
+import { setToken } from '@/lib/features/userSlice';
+import { useRouter } from 'next/navigation';
 
 const formSchema = z.object({
 	username: z.string().min(6, {
@@ -38,14 +41,18 @@ const SignInForm = () => {
 		setShowPassword((prevShowPassword) => !prevShowPassword);
 	};
 
+	const router = useRouter();
+
 	const [signIn] = useSignInMutation();
+	const dispatch = useAppDispatch();
 
 	const { toast } = useToast();
 
 	async function onSubmit(values: z.infer<typeof formSchema>) {
 		try {
 			const response = await signIn(values).unwrap();
-			console.log(response);
+			dispatch(setToken(response));
+			router.push('/');
 		} catch (error) {
 			toast({
 				title: 'Ой! Что-то пошло не так..',
@@ -82,7 +89,7 @@ const SignInForm = () => {
 									<Input
 										{...field}
 										type={showPassword ? 'text' : 'password'}
-										autoComplete="new-password"
+										autoComplete="password"
 									/>
 									<Button
 										className="absolute bottom-0 right-0"

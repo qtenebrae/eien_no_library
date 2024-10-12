@@ -1,11 +1,13 @@
+'use client';
+
 import { Button } from '@/components/ui/button';
 import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 import { Tabs, TabsList, TabsTrigger, TabsContent } from '@/components/ui/tabs';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import { SignUpForm } from '@/components/ui/sign-up-form';
 import { CoilShape, LogoIcon } from '@/components/icons';
-import Link from 'next/link';
 import { SignInForm } from '@/components/ui/sign-in-form';
+import Link from 'next/link';
 
 export default function Sign() {
 	return (
