@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, useEffect } from 'react';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import {
 	NavigationMenu,
@@ -19,15 +19,33 @@ import {
 	ReaderIcon,
 	RocketIcon
 } from '@/components/icons';
-import { useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { UserMenu } from '../ui/user-menu';
 import { SignInButton } from '../ui/sign-in-button';
+import { useRefreshTokensMutation } from '@/lib/api/api';
+import { setToken } from '@/lib/features/userSlice';
+import { Skeleton } from '../ui/skeleton';
 import Link from 'next/link';
 
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 
 export function Header({ className }: HeaderProps) {
+	const [refreshTokens, mutation] = useRefreshTokensMutation();
 	const { access_token } = useAppSelector((state) => state.user);
+	const dispatch = useAppDispatch();
+
+	useEffect(() => {
+		const updateTokens = async () => {
+			try {
+				const response = await refreshTokens({}).unwrap();
+				dispatch(setToken(response));
+			} catch (error) {
+				// I don't care
+			}
+		};
+
+		updateTokens();
+	}, [refreshTokens, dispatch]);
 
 	return (
 		<header
@@ -86,7 +104,13 @@ export function Header({ className }: HeaderProps) {
 				<ModeToggle />
 			</div>
 
-			{access_token ? <UserMenu /> : <SignInButton />}
+			{!mutation.isSuccess && !mutation.isError ? (
+				<Skeleton className="w-10 h-10 rounded-lg xl:w-44" />
+			) : access_token ? (
+				<UserMenu />
+			) : (
+				<SignInButton />
+			)}
 		</header>
 	);
 }
