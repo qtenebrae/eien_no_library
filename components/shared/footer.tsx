@@ -4,9 +4,8 @@ import { cn } from '@/lib/utils';
 import { DetailedHTMLProps, HTMLAttributes } from 'react';
 import { Button } from '@/components/ui/button';
 import { ModeToggle } from '@/components/ui/mode-toggle';
-import Link from 'next/link';
 import { DashboardIcon, MixIcon, ReaderIcon, RocketIcon } from '../icons';
-import {} from 'lucide-react';
+import Link from 'next/link';
 
 interface FooterProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
 

@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { DetailedHTMLProps, HTMLAttributes } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useLayoutEffect, useState } from 'react';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import {
 	NavigationMenu,
@@ -19,15 +19,27 @@ import {
 	ReaderIcon,
 	RocketIcon
 } from '@/components/icons';
-import { useAppSelector } from '@/hooks/hooks';
+import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { UserMenu } from '../ui/user-menu';
 import { SignInButton } from '../ui/sign-in-button';
+import { setToken } from '@/lib/features/userSlice';
 import Link from 'next/link';
 
-interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {}
+interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
+	initialData: any;
+}
 
-export function Header({ className }: HeaderProps) {
-	const { access_token } = useAppSelector((state) => state.user);
+export function Header({ initialData, className }: HeaderProps) {
+	const [initial, setInitial] = useState(initialData);
+	const dispatch = useAppDispatch();
+	const userData = useAppSelector((state) => state.user);
+
+	useEffect(() => {
+		if (initialData) {
+			dispatch(setToken(initialData));
+			setInitial(userData);
+		}
+	}, [initialData, dispatch]);
 
 	return (
 		<header
@@ -86,7 +98,7 @@ export function Header({ className }: HeaderProps) {
 				<ModeToggle />
 			</div>
 
-			{access_token ? <UserMenu /> : <SignInButton />}
+			{userData.access_token || initial?.access_token ? <UserMenu /> : <SignInButton />}
 		</header>
 	);
 }
