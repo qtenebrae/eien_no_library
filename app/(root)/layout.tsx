@@ -1,11 +1,15 @@
 import { Header } from '@/components/shared/header';
 import { Footer } from '@/components/shared/footer';
+import { IUser } from '@/lib/interfaces/user.interface';
 import { cookies } from 'next/headers';
 
-const fetchUserData = async () => {
+const fetchUserData = async (): Promise<IUser | undefined> => {
 	try {
 		const cookieStore = cookies();
 		const refresh_token = cookieStore.get('refresh_token');
+
+		if (!refresh_token) return undefined;
+
 		const response = await fetch('http://localhost:3131/keycloak/refresh', {
 			method: 'POST',
 			credentials: 'include',
@@ -13,9 +17,12 @@ const fetchUserData = async () => {
 				Cookie: `refresh_token=${refresh_token?.value}`
 			}
 		});
-		const data = await response.json();
+
+		const data: IUser = await response.json();
 		return data;
-	} catch {}
+	} catch {
+		// I don't care
+	}
 };
 
 export default async function HomeLayout({

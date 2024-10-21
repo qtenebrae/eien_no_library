@@ -1,7 +1,7 @@
 'use client';
 
 import { cn } from '@/lib/utils';
-import { DetailedHTMLProps, HTMLAttributes, useEffect, useLayoutEffect, useState } from 'react';
+import { DetailedHTMLProps, HTMLAttributes, useEffect, useState } from 'react';
 import { ModeToggle } from '@/components/ui/mode-toggle';
 import {
 	NavigationMenu,
@@ -23,21 +23,24 @@ import { useAppDispatch, useAppSelector } from '@/hooks/hooks';
 import { UserMenu } from '../ui/user-menu';
 import { SignInButton } from '../ui/sign-in-button';
 import { setToken } from '@/lib/features/userSlice';
+import { IUser } from '@/lib/interfaces/user.interface';
 import Link from 'next/link';
 
 interface HeaderProps extends DetailedHTMLProps<HTMLAttributes<HTMLDivElement>, HTMLDivElement> {
-	initialData: any;
+	initialData: IUser | undefined;
 }
 
 export function Header({ initialData, className }: HeaderProps) {
-	const [initial, setInitial] = useState(initialData);
+	const [userDataFromSSR, setUserDataFromSSR] = useState(initialData);
 	const dispatch = useAppDispatch();
 	const userData = useAppSelector((state) => state.user);
 
 	useEffect(() => {
 		if (initialData) {
 			dispatch(setToken(initialData));
-			setInitial(userData);
+		}
+		if (userData) {
+			setUserDataFromSSR(userData);
 		}
 	}, [initialData, dispatch]);
 
@@ -98,7 +101,7 @@ export function Header({ initialData, className }: HeaderProps) {
 				<ModeToggle />
 			</div>
 
-			{userData.access_token || initial?.access_token ? <UserMenu /> : <SignInButton />}
+			{userData.access_token || userDataFromSSR?.access_token ? <UserMenu /> : <SignInButton />}
 		</header>
 	);
 }
